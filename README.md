@@ -15,8 +15,8 @@ A console-based Blackjack game written in C++.
 
 - **W** - Hit (take another card)
 - **S** - Stand (keep current hand)
-- **Q** - Play another round
-- **N** - Quit game
+- **Enter bet amount** - Place bet to play another round
+- **0** - Quit game
 
 ## How to Build
 

@@ -18,8 +18,10 @@ void Game::playRound() {
         return;
     }
 
-    currentBet = getBet();
-    if (currentBet == 0) return;
+    if (currentBet == 0) {
+        currentBet = getBet();
+        if (currentBet == 0) return;
+    }
 
     playerHand.clear();
     dealerHand.clear();
@@ -34,6 +36,7 @@ void Game::playRound() {
     if (playerHand.isBlackjack()) {
         std::cout << "BLACKJACK! You win!\n";
         playerMoney += currentBet * 1.5;
+        currentBet = 0;
         return;
     }
 
@@ -45,6 +48,8 @@ void Game::playRound() {
         std::cout << "BUST! You lose $" << currentBet << "\n";
         playerMoney -= currentBet;
     }
+
+    currentBet = 0;
 }
 
 void Game::displayGameState(bool hideDealerCard) const {
@@ -146,9 +151,20 @@ bool Game::playAgain() {
         std::cout << "You're out of money! Thanks for playing!\n";
         return false;
     }
-    
-    char choice;
-    std::cout << "\nPlay another round? (Q)Play again or (N)Quit: ";
-    std::cin >> choice;
-    return tolower(choice) == 'q';
+
+    int bet;
+    std::cout << "\nPlace your bet for next round (1-" << playerMoney << ") or 0 to quit: $";
+
+    while (!(std::cin >> bet) || bet < 0 || bet > playerMoney) {
+        std::cout << "Invalid bet. Enter amount between 0 and " << playerMoney << ": $";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+    if (bet == 0) {
+        return false;
+    }
+
+    currentBet = bet;
+    return true;
 }
