@@ -14,4 +14,11 @@ public:
     void clear();
     std::string toString() const;
     size_t size() const;
+
+    // New methods for advanced features
+    bool canSplit() const;
+
+    Card getCard(int index) const;
+
+    std::vector<Card> getCards() const;
 };

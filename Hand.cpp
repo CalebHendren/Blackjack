@@ -52,3 +52,32 @@ std::string Hand::toString() const {
 size_t Hand::size() const {
     return cards.size();
 }
+
+bool Hand::canSplit() const {
+    if (cards.size() != 2) return false;
+    
+    int value1 = cards[0].getValue();
+    int value2 = cards[1].getValue();
+    
+    // Aces can be split
+    if (value1 == 1 && value2 == 1) return true;
+    
+    // Face cards and 10s can be split with each other
+    if ((value1 >= 10 || value1 == 1) && (value2 >= 10 || value2 == 1)) {
+        return (value1 >= 10 && value2 >= 10) || (value1 == value2);
+    }
+    
+    // Same value cards can be split
+    return value1 == value2;
+}
+
+Card Hand::getCard(int index) const {
+    if (index >= 0 && index < cards.size()) {
+        return cards[index];
+    }
+    return Card(Suit::HEARTS, 1); // Return a default card if index is invalid
+}
+
+std::vector<Card> Hand::getCards() const {
+    return cards;
+}
