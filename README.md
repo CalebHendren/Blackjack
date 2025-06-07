@@ -53,14 +53,11 @@ make
 - Blackjack (21 with first 2 cards) pays 1.5:1
 - Regular wins pay 1:1
 - Ties are a push (bet returned)
-
-### Advanced Rules
-
-- **Splitting**: Available when first two cards have same value. Creates two separate hands with equal bets. Aces
+- Splitting: Available when first two cards have same value. Creates two separate hands with equal bets. Aces
   receive only one additional card after splitting.
-- **Double Down**: Available on first two cards only. Doubles the bet and deals exactly one more card.
-- **Surrender**: Available on first two cards only, before any other action. Returns half the bet.
-- **Multiple Hands**: After splitting, each hand is played separately with its own bet.
+- Double Down: Available on first two cards only. Doubles the bet and deals exactly one more card.
+- Surrender: Available on first two cards only, before any other action. Returns half the bet.
+- Multiple Hands: After splitting, each hand is played separately with its own bet.
 
 ## File Structure
 
